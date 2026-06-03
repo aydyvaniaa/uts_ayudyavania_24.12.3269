@@ -36,7 +36,7 @@ class PartnerController extends Controller
             'logo_url' => $request->logo_url,
         ]);
 
-        return redirect()->route('admin.partners.index');
+        return redirect()->route('admin.partners.index')->with('success', 'Data.');
     }
 
     public function edit(string $id)
@@ -59,7 +59,7 @@ class PartnerController extends Controller
             'logo_url' => $request->logo_url,
         ]);
 
-        return redirect()->route('admin.partners.index');
+        return redirect()->route('admin.partners.index')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function destroy(string $id)
@@ -67,6 +67,6 @@ class PartnerController extends Controller
         $partner = Partner::findOrFail($id);
         $partner->delete();
 
-        return redirect()->route('admin.partners.index');
+        return redirect()->route('admin.partners.index')->with('success', 'Data berhasil dihapus.');
     }
 }

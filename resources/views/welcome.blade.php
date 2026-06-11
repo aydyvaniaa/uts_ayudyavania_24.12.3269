@@ -212,10 +212,7 @@
 
                     </span>
 
-                    <a href="{{url('event/1')}}"
-                        class="px-5 py-2 bg-indigo-50 text-indigo-600 rounded-xl font-bold hover:bg-indigo-600 hover:text-white transition">
-
-                        Lihat Detail
+                    <a href="{{ route('events.show', $event->id) }}" class="px-5 py-2 bg-indigo-50 text-indigo-600 rounded-xl font-bold hover:bg-indigo-600 hover:text-white transition">Lihat Detail</a>
 
                     </a>
 
@@ -250,9 +247,11 @@
 
         <div class="bg-white rounded-3xl shadow p-6 text-center">
 
-            <img src="{{ $partner->logo_url }}"
-                alt="{{ $partner->name }}"
-                class="h-20 mx-auto object-contain">
+           <img src="{{ ($event->poster_path && Storage::disk('public')->exists($event->poster_path))
+                         ? asset('storage/' . $event->poster_path)
+                     : 'https://placehold.co/200x600' }}" alt="{{ $event->title }}"
+                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+
 
             <h3 class="mt-4 font-bold text-lg">
                 {{ $partner->name }}

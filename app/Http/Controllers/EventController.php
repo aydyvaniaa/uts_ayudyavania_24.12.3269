@@ -8,19 +8,25 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    function index(){
-    
+    function index()
+    {
+
     }
 
-    function show(){
-        return view('event-detail');
+    function show(Event $event)
+    {
+        $categories = \App\Models\Category::all();
+
+        return view('event-detail', compact('categories', 'event'));
     }
 
-    function checkout(){
+    function checkout()
+    {
         return view('checkout');
     }
 
-    function ticket(){
+    function ticket()
+    {
         return view('ticket');
     }
 }
